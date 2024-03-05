@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('social_links', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('social_network_id')->constrained('social_networks')->cascadeOnDelete();
+            $table->foreignId('profile_id')->constrained('profiles')->cascadeOnDelete();
+            $table->foreignId('social_network_id')->constrained('social_networks');
             $table->string('url');
             $table->timestamps();
         });
