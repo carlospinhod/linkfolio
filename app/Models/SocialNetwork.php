@@ -13,4 +13,14 @@ class SocialNetwork extends Model
     {
         return $this->belongsTo(SocialLink::class);
     }
+    public function getIcon($id)
+    {
+        $socialNetwork = SocialNetwork::find($id);
+
+        if ($socialNetwork) {
+            return $socialNetwork->icon;
+        } else {
+            return '';
+        }
+    }
 }
