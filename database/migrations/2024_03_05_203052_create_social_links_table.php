@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('profile_id')->constrained('profiles')->cascadeOnDelete();
             $table->foreignId('social_network_id')->constrained('social_networks');
             $table->string('url');
+            $table->integer('order');
             $table->timestamps();
         });
     }

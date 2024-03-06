@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('profile_id')->constrained('profiles')->cascadeOnDelete();
             $table->string('title');
             $table->string('url');
-            $table->integer('position')->default(0);
+            $table->integer('order')->default(0);
             $table->timestamps();
         });
     }
