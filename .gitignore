@@ -28,3 +28,5 @@ Homestead.json
 .idea/modules.xml
 .idea/php.xml
 .idea/phpunit.xml
+.idea/codeception.xml
+.idea/phpspec.xml
