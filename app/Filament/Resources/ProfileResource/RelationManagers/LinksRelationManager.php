@@ -20,7 +20,7 @@ class LinksRelationManager extends RelationManager
             ->schema([
                 Forms\Components\TextInput::make('title')
                     ->required()
-                    ->maxLength(30),
+                    ->maxLength(60),
                 Forms\Components\TextInput::make('url')
                     ->required()
                     ->maxLength(60),
