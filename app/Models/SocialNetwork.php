@@ -23,4 +23,14 @@ class SocialNetwork extends Model
             return '';
         }
     }
+    public function getDomain($id)
+    {
+        $socialNetwork = SocialNetwork::find($id);
+
+        if ($socialNetwork) {
+            return $socialNetwork->base_domain;
+        } else {
+            return '';
+        }
+    }
 }

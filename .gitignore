@@ -30,3 +30,8 @@ Homestead.json
 .idea/phpunit.xml
 .idea/codeception.xml
 .idea/phpspec.xml
+.idea/blade.xml
+.idea/laravel-idea.xml
+composer.lock
+composer.json
+composer.lock
