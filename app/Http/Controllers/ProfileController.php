@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Link;
 use App\Models\Profile;
+use App\Models\ProfileStatistic;
 use App\Models\SocialLink;
 use App\Models\SocialNetwork;
 use Illuminate\Http\Request;
@@ -15,7 +16,7 @@ class ProfileController extends Controller
         $profile = Profile::where('username', $username)->first();
         $content = array();
         if ($profile) {
-
+            $this->newProfileVisit($profile);
             $content = [
                 'bio' => $profile->bio,
                 'profile_image' => $profile->profile_image,
@@ -48,5 +49,25 @@ class ProfileController extends Controller
         } else {
             return 404;
         }
+    }
+    function newProfileVisit(Profile $profile)
+    {
+        $isMobile = request()->header('sec-ch-ua-mobile');
+        $platform = request()->header('sec-ch-ua-platform');
+        if ($isMobile == '?0'){
+            $isMobile = 'Desktop';
+
+        }else{
+            $isMobile = 'Mobile';
+        }
+        $action_details =json_encode([
+            'device_type' => $isMobile,
+            'device_platform' => $platform
+        ]);
+        ProfileStatistic::create([
+            'profile_id' => $profile->id,
+            'action_type' => 'profile_visit',
+            'action_details' => $action_details,
+        ]);
     }
 }
