@@ -38,7 +38,7 @@ class SocialLinksRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('Social Link')
             ->columns([
-                Tables\Columns\TextColumn::make('social_networks.name'),
+                Tables\Columns\TextColumn::make('socialNetwork.name'),
                 Tables\Columns\TextColumn::make('url'),
             ])
             ->filters([

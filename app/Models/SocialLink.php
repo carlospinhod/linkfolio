@@ -10,14 +10,18 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class SocialLink extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'profile_id', 'social_network_id', 'url', 'order'
     ];
-    public function socialNetwork(): HasMany
+
+    public function socialNetwork(): BelongsTo
     {
-        return $this->hasMany(SocialNetwork::class);
+        return $this->belongsTo(SocialNetwork::class, 'social_network_id');
     }
-    public function profile() : BelongsTo
+
+
+    public function profile(): BelongsTo
     {
         return $this->belongsTo(Profile::class);
     }
