@@ -17,6 +17,7 @@ class ProfileController extends Controller
         $content = array();
         if ($profile) {
             $this->newProfileVisit($profile);
+            $profileSeo = $this->getProfileSeo($profile);
             $content = [
                 'bio' => $profile->bio,
                 'profile_image' => $profile->profile_image,
@@ -45,22 +46,23 @@ class ProfileController extends Controller
                 }
             }
 
-            return view('layouts.default', compact('content'));
+            return view('layouts.default', compact('content', 'profileSeo'));
         } else {
             return 404;
         }
     }
+
     function newProfileVisit(Profile $profile)
     {
         $isMobile = request()->header('sec-ch-ua-mobile');
         $platform = request()->header('sec-ch-ua-platform');
-        if ($isMobile == '?0'){
+        if ($isMobile == '?0') {
             $isMobile = 'Desktop';
 
-        }else{
+        } else {
             $isMobile = 'Mobile';
         }
-        $action_details =json_encode([
+        $action_details = json_encode([
             'device_type' => $isMobile,
             'device_platform' => $platform
         ]);
@@ -69,5 +71,44 @@ class ProfileController extends Controller
             'action_type' => 'profile_visit',
             'action_details' => $action_details,
         ]);
+    }
+
+    function getProfileSeo(Profile $profile)
+    {
+        if ($profile->seo_title != '') {
+            $seo_title = $profile->seo_title . ' - Link Folio';
+        } else {
+            $seo_title = $profile->username . ' - Link Folio';
+        }
+        if ($profile->seo_description != '') {
+            $seo_description = $profile->seo_description;
+        } else {
+            $seo_description = $profile->bio;
+        }
+        if ($profile->seo_image != '') {
+            $seo_image = $profile->seo_image;
+        } else {
+            $seo_image = $profile->profile_image;
+        }
+        if ($profile->seo_keywords != '') {
+            $seo_keywords = $profile->seo_keywords;
+        } else {
+            $seo_keywords = '';
+        }
+        if ($profile->favicon != '') {
+            $favicon = $profile->favicon;
+        } else {
+            $favicon = '';
+        }
+
+        return [
+            'title' => $seo_title,
+            'description' => $seo_description,
+            'image' => $seo_image,
+            'keywords' => $seo_keywords,
+            'favicon' => $favicon,
+            'url' => '/' . $profile->username,
+        ];
+
     }
 }
