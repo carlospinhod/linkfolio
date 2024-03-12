@@ -16,4 +16,10 @@ class EditProfile extends EditRecord
             Actions\DeleteAction::make(),
         ];
     }
+    protected function getHeaderWidgets(): array
+    {
+        return [
+            ProfileResource\Widgets\StatsOverview::class
+        ];
+    }
 }

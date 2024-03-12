@@ -14,8 +14,22 @@ class ProfileStatistic extends Model
         'profile_id', 'action_type', 'action_details'
     ];
 
-    public function profile() : BelongsTo
+    public function profile(): BelongsTo
     {
         return $this->belongsTo(Profile::class, 'profile_id');
+    }
+
+    public function getProfileVisits($profile, $time = null)
+    {
+        $profileVisits = $this->where('profile_id', $profile->id)
+            ->where('action_type', 'profile_visit');
+
+        if ($time == 'today') {
+            $profileVisits->whereDate('created_at', today());
+        } elseif ($time == 'last_month') {
+            $profileVisits->whereBetween('created_at', [now()->startOfMonth(), now()]);
+        }
+
+        return $profileVisits->count();
     }
 }
