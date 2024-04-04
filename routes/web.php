@@ -15,7 +15,7 @@ use App\Http\Controllers\ProfileController;
 */
 
 Route::get('/', function () {
-    return '';
+    return view('landing-page.pages.home');
 });
 
 Route::get('/{username}', [ProfileController::class, 'index']);
