@@ -35,3 +35,6 @@ Homestead.json
 composer.lock
 composer.json
 composer.lock
+package-lock.json
+package-lock.json
+.idea/material_theme_project_new.xml

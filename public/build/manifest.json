@@ -9,6 +9,7 @@
   },
   "resources/js/app.js": {
     "file": "assets/app-DFMGEaK5.js",
+    "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true
   },

@@ -24,8 +24,7 @@
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="https://carlospinho.pt/favicon.png">
-    @livewireStyles
-    @vite(['resources/sass/landing-page.scss'])
+    @vite(['resources/sass/landing-page.scss', 'resources/js/app.js'])
 </head>
 <body>
 
